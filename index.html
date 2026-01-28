@@ -15,7 +15,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             background: #f5f5f7;
-            padding: 10px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -27,17 +27,121 @@
             width: 100%;
         }
 
+        /* Экран выбора уровня */
+        .level-selector {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .level-selector h1 {
+            font-size: 36px;
+            color: #1d1d1f;
+            margin-bottom: 15px;
+        }
+
+        .level-selector p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .level-card:active {
+            transform: translateY(-2px);
+        }
+
+        .level-card.level-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .level-card.level-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .level-card.level-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .level-card.level-4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .level-card.level-5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            grid-column: 1 / -1;
+        }
+
+        .level-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .level-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .level-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .game-container {
+            display: none;
+        }
+
+        .game-container.active {
+            display: block;
+        }
+
         .controls {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         button {
-            padding: 12px 20px;
-            font-size: 15px;
+            padding: 12px 24px;
+            font-size: 16px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -45,12 +149,15 @@
             color: white;
             transition: all 0.3s;
             font-weight: 500;
-            touch-action: manipulation;
+        }
+
+        button:hover {
+            background: #0051D5;
+            transform: translateY(-2px);
         }
 
         button:active {
-            transform: scale(0.95);
-            background: #0051D5;
+            transform: translateY(0);
         }
 
         button:disabled {
@@ -63,64 +170,48 @@
             background: #FF9500;
         }
 
-        #studyMode:active {
-            background: #E08600;
-        }
-
         #studyMode.active {
             background: #34C759;
-        }
-
-        #studyMode.active:active {
-            background: #2FA84E;
         }
 
         #resetBtn {
             background: #FF3B30;
         }
 
-        #resetBtn:active {
-            background: #D32F2F;
-        }
-
-        #resetZoom {
+        #backToLevels {
             background: #5856D6;
         }
 
-        #resetZoom:active {
-            background: #4745B8;
+        #resetZoom {
+            background: #8E8E93;
         }
 
         .zoom-controls {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
         }
 
         #zoomIn, #zoomOut {
-            padding: 10px 16px;
+            padding: 10px 18px;
             font-size: 20px;
             font-weight: bold;
             background: #8E8E93;
-            min-width: 44px;
-        }
-
-        #zoomIn:active, #zoomOut:active {
-            background: #636366;
+            min-width: 45px;
         }
 
         .info-panels {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .region-display {
             background: white;
             border: 2px solid #007AFF;
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
@@ -129,7 +220,7 @@
             background: white;
             border: 2px solid #FF9500;
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             display: none;
@@ -140,21 +231,20 @@
         }
 
         .region-name {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
             color: #1d1d1f;
-            min-height: 28px;
-            line-height: 1.3;
+            min-height: 32px;
         }
 
         .region-capital {
-            font-size: 16px;
+            font-size: 18px;
             color: #666;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .info-label {
-            font-size: 11px;
+            font-size: 12px;
             color: #999;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -162,23 +252,20 @@
         }
 
         .attempts {
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 14px;
             color: #666;
         }
 
         .map-container {
             background: white;
-            border: 3px solid #d1d1d6;
+            border: 4px solid #d1d1d6;
             border-radius: 12px;
-            padding: 10px;
+            padding: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
             position: relative;
-            transition: border-color 0.3s;
-            touch-action: none;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.1s;
         }
 
         .map-container.correct {
@@ -192,43 +279,48 @@
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
 
         #map {
             width: 100%;
-            height: 500px;
+            height: 700px;
             cursor: grab;
-            touch-action: none;
         }
 
         #map:active {
             cursor: grabbing;
         }
 
-        #map.study-mode {
-            cursor: pointer;
-        }
-
         .region-path {
             stroke: #1d1d1f;
             stroke-width: 0.5;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: opacity 0.3s, fill 0.3s;
         }
 
-        .region-path:active {
-            opacity: 0.7;
+        .region-path:hover {
+            opacity: 0.8;
+            stroke-width: 1.5;
+        }
+
+        /* Неактивные регионы (для уровней 1-4) */
+        .region-path.inactive {
+            fill: #e8e8ed !important;
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .region-path.inactive:hover {
+            opacity: 0.4;
+            stroke-width: 0.5;
         }
 
         .region-path.guessed {
             fill: #f0f0f0 !important;
             cursor: default;
-            opacity: 0.5;
-        }
-
-        .region-path.guessed:active {
             opacity: 0.5;
         }
 
@@ -249,32 +341,30 @@
         }
 
         .stats {
-            margin-top: 15px;
+            margin-top: 20px;
             text-align: center;
-            font-size: 15px;
+            font-size: 18px;
             color: #1d1d1f;
-            padding: 0 10px;
         }
 
         .loading {
             text-align: center;
-            padding: 30px;
-            font-size: 16px;
+            padding: 40px;
+            font-size: 18px;
             color: #666;
         }
 
         .zoom-info {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 8px 12px;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
             border-radius: 8px;
-            font-size: 11px;
+            font-size: 14px;
             color: #666;
             pointer-events: none;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            line-height: 1.4;
         }
 
         .feedback-notification {
@@ -283,7 +373,7 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
             background: white;
-            padding: 30px 45px;
+            padding: 40px 60px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             z-index: 1000;
@@ -308,18 +398,18 @@
         }
 
         .feedback-icon {
-            font-size: 60px;
-            margin-bottom: 8px;
+            font-size: 80px;
+            margin-bottom: 10px;
             animation: bounce 0.5s;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
 
         .feedback-text {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             text-align: center;
         }
@@ -352,8 +442,8 @@
             background: white;
             border: 3px solid #007AFF;
             border-radius: 16px;
-            padding: 20px;
-            margin-top: 15px;
+            padding: 30px;
+            margin-top: 20px;
             text-align: center;
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
             animation: slideIn 0.5s ease-out;
@@ -371,20 +461,20 @@
         }
 
         .final-summary h2 {
-            font-size: 26px;
+            font-size: 32px;
             color: #1d1d1f;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .summary-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 15px 0;
+            gap: 20px;
+            margin: 20px 0;
         }
 
         .stat-item {
-            padding: 15px 10px;
+            padding: 20px;
             border-radius: 12px;
             background: #f5f5f7;
         }
@@ -402,22 +492,21 @@
         }
 
         .stat-number {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: bold;
             color: #1d1d1f;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 16px;
             color: #666;
             margin-top: 5px;
-            line-height: 1.3;
         }
 
         .percentage {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            margin-top: 12px;
+            margin-top: 15px;
             padding: 10px;
             background: white;
             border-radius: 8px;
@@ -438,176 +527,134 @@
         /* Мобильная адаптация */
         @media (max-width: 768px) {
             body {
-                padding: 8px;
+                padding: 10px;
+            }
+
+            .level-selector {
+                padding: 25px 20px;
+            }
+
+            .level-selector h1 {
+                font-size: 28px;
+            }
+
+            .level-selector p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .levels-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .level-card {
+                padding: 25px 20px;
+                min-height: 160px;
+            }
+
+            .level-card.level-5 {
+                grid-column: 1;
+            }
+
+            .level-number {
+                font-size: 40px;
+            }
+
+            .level-title {
+                font-size: 20px;
+            }
+
+            .level-desc {
+                font-size: 13px;
             }
 
             .controls {
-                gap: 6px;
+                gap: 8px;
                 margin-bottom: 12px;
             }
 
             button {
-                padding: 10px 14px;
-                font-size: 13px;
-                border-radius: 6px;
+                padding: 10px 16px;
+                font-size: 14px;
             }
 
             #zoomIn, #zoomOut {
-                padding: 8px 12px;
+                padding: 8px 14px;
                 font-size: 18px;
                 min-width: 40px;
             }
 
             .info-panels {
                 grid-template-columns: 1fr;
-                gap: 10px;
-                margin-bottom: 12px;
+                gap: 12px;
             }
 
             .region-display, .region-info {
-                padding: 12px;
+                padding: 15px;
             }
 
             .region-name {
                 font-size: 18px;
-                min-height: 24px;
             }
 
             .region-capital {
-                font-size: 14px;
-            }
-
-            .info-label {
-                font-size: 10px;
-            }
-
-            .attempts {
-                font-size: 13px;
+                font-size: 15px;
             }
 
             .map-container {
-                padding: 8px;
-                border-width: 2px;
+                padding: 10px;
             }
 
             #map {
-                height: 400px;
+                height: 450px;
             }
 
             .zoom-info {
-                top: 10px;
-                right: 10px;
-                padding: 6px 10px;
-                font-size: 10px;
-            }
-
-            .zoom-info div {
-                margin: 2px 0;
+                font-size: 11px;
+                padding: 8px 12px;
+                top: 15px;
+                right: 15px;
             }
 
             .feedback-notification {
-                padding: 25px 35px;
-                border-radius: 16px;
+                padding: 30px 40px;
             }
 
             .feedback-icon {
-                font-size: 50px;
-                margin-bottom: 5px;
+                font-size: 60px;
             }
 
             .feedback-text {
-                font-size: 20px;
-            }
-
-            .stats {
-                font-size: 13px;
-                margin-top: 12px;
+                font-size: 24px;
             }
 
             .final-summary {
-                padding: 16px;
-                margin-top: 12px;
+                padding: 20px;
             }
 
             .final-summary h2 {
-                font-size: 22px;
-                margin-bottom: 12px;
+                font-size: 24px;
             }
 
             .summary-stats {
                 grid-template-columns: 1fr;
-                gap: 8px;
-                margin: 12px 0;
-            }
-
-            .stat-item {
-                padding: 12px;
+                gap: 12px;
             }
 
             .stat-number {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .stat-label {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .percentage {
-                font-size: 16px;
-                margin-top: 10px;
-                padding: 8px;
-            }
-
-            .final-summary p {
-                font-size: 15px !important;
-                margin-top: 10px !important;
-            }
-        }
-
-        /* Очень маленькие экраны */
-        @media (max-width: 400px) {
-            body {
-                padding: 5px;
-            }
-
-            button {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-
-            #zoomIn, #zoomOut {
-                padding: 6px 10px;
-                font-size: 16px;
-                min-width: 36px;
-            }
-
-            .region-name {
-                font-size: 16px;
-            }
-
-            #map {
-                height: 350px;
-            }
-
-            .feedback-notification {
-                padding: 20px 30px;
-            }
-
-            .feedback-icon {
-                font-size: 40px;
-            }
-
-            .feedback-text {
                 font-size: 18px;
             }
-
-            .zoom-info {
-                font-size: 9px;
-                padding: 5px 8px;
-            }
         }
 
-        /* Убираем hover эффекты на touch устройствах */
         @media (hover: none) {
             button:hover {
                 transform: none;
@@ -619,52 +666,8 @@
                 stroke-width: 0.5;
             }
 
-            #zoomIn:hover, #zoomOut:hover {
-                background: #8E8E93;
-            }
-
-            #studyMode:hover {
-                background: #FF9500;
-            }
-
-            #studyMode.active:hover {
-                background: #34C759;
-            }
-
-            #resetBtn:hover {
-                background: #FF3B30;
-            }
-
-            #resetZoom:hover {
-                background: #5856D6;
-            }
-
-            button:hover {
-                background: #007AFF;
-            }
-        }
-
-        /* Landscape на мобильных */
-        @media (max-width: 768px) and (orientation: landscape) {
-            #map {
-                height: 300px;
-            }
-
-            .controls {
-                margin-bottom: 8px;
-            }
-
-            .info-panels {
-                grid-template-columns: 1fr 1fr;
-                margin-bottom: 8px;
-            }
-
-            .region-display, .region-info {
-                padding: 10px;
-            }
-
-            .region-name {
-                font-size: 16px;
+            .level-card:hover {
+                transform: none;
             }
         }
     </style>
@@ -673,46 +676,87 @@
     <div class="screen-flash" id="screenFlash"></div>
 
     <div class="container">
-        <div class="controls">
-            <button id="startBtn">Начать</button>
-            <button id="studyMode">Изучение</button>
-            <div class="zoom-controls">
-                <button id="zoomOut">−</button>
-                <button id="zoomIn">+</button>
-            </div>
-            <button id="resetZoom">Сброс</button>
-            <button id="resetBtn">Обновить</button>
-        </div>
-
-        <div class="info-panels">
-            <div class="region-display">
-                <div class="region-name" id="regionName">Нажмите "Начать"</div>
-                <div class="attempts" id="attempts"></div>
-            </div>
-
-            <div class="region-info" id="regionInfo">
-                <div class="info-label">Изучаемый регион</div>
-                <div class="region-name" id="studyRegionName">—</div>
-                <div class="region-capital" id="studyRegionCapital">—</div>
-            </div>
-        </div>
-
-        <div class="map-container" id="mapContainer">
-            <div id="map" class="loading">Загрузка карты...</div>
+        <!-- Экран выбора уровня -->
+        <div class="level-selector" id="levelSelector">
+            <h1>🗺️ География России</h1>
+            <p>Выберите уровень сложности</p>
             
-            <div class="feedback-notification" id="feedbackNotification">
-                <div class="feedback-icon" id="feedbackIcon"></div>
-                <div class="feedback-text" id="feedbackText"></div>
-            </div>
-            
-            <div class="zoom-info">
-                <div>👆 Тап - выбор региона</div>
-                <div>🤏 Щипок - масштаб</div>
+            <div class="levels-grid">
+                <div class="level-card level-1" onclick="selectLevel(1)">
+                    <div class="level-number">1</div>
+                    <div class="level-title">Запад</div>
+                    <div class="level-desc">Западные регионы России</div>
+                </div>
+                
+                <div class="level-card level-2" onclick="selectLevel(2)">
+                    <div class="level-number">2</div>
+                    <div class="level-title">Восток</div>
+                    <div class="level-desc">Восточные регионы России</div>
+                </div>
+                
+                <div class="level-card level-3" onclick="selectLevel(3)">
+                    <div class="level-number">3</div>
+                    <div class="level-title">Север</div>
+                    <div class="level-desc">Северные регионы России</div>
+                </div>
+                
+                <div class="level-card level-4" onclick="selectLevel(4)">
+                    <div class="level-number">4</div>
+                    <div class="level-title">Юг</div>
+                    <div class="level-desc">Южные регионы России</div>
+                </div>
+                
+                <div class="level-card level-5" onclick="selectLevel(5)">
+                    <div class="level-number">5</div>
+                    <div class="level-title">ВСЯ РОССИЯ</div>
+                    <div class="level-desc">Все 89 регионов - финальный вызов!</div>
+                </div>
             </div>
         </div>
 
-        <div class="stats" id="stats"></div>
-        <div id="finalSummary"></div>
+        <!-- Игровой экран -->
+        <div class="game-container" id="gameContainer">
+            <div class="controls">
+                <button id="startBtn">Начать</button>
+                <button id="studyMode">Режим изучения</button>
+                <div class="zoom-controls">
+                    <button id="zoomOut">−</button>
+                    <button id="zoomIn">+</button>
+                </div>
+                <button id="resetZoom">Сброс вида</button>
+                <button id="backToLevels">← К уровням</button>
+            </div>
+
+            <div class="info-panels">
+                <div class="region-display">
+                    <div class="region-name" id="regionName">Нажмите "Начать" для игры</div>
+                    <div class="attempts" id="attempts"></div>
+                </div>
+
+                <div class="region-info" id="regionInfo">
+                    <div class="info-label">Изучаемый регион</div>
+                    <div class="region-name" id="studyRegionName">—</div>
+                    <div class="region-capital" id="studyRegionCapital">—</div>
+                </div>
+            </div>
+
+            <div class="map-container" id="mapContainer">
+                <div id="map" class="loading">Загрузка карты России...</div>
+                
+                <div class="feedback-notification" id="feedbackNotification">
+                    <div class="feedback-icon" id="feedbackIcon"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                </div>
+                
+                <div class="zoom-info">
+                    <div>✋ Перетаскивание - перемещение</div>
+                    <div>+ / − - приближение/отдаление</div>
+                </div>
+            </div>
+
+            <div class="stats" id="stats"></div>
+            <div id="finalSummary"></div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -756,9 +800,48 @@
             'Ульяновская область': 'Ульяновск', 'Челябинская область': 'Челябинск',
             'Ярославская область': 'Ярославль', 'Москва': 'Москва',
             'Санкт-Петербург': 'Санкт-Петербург', 'Севастополь': 'Севастополь',
-            'Еврейская АО': 'Биробиджан', 'Ненецкий АО': 'Нарьян-Мар',
+            'Еврейская автономная область': 'Биробиджан', 'Ненецкий АО': 'Нарьян-Мар',
             'Ханты-Мансийский АО': 'Ханты-Мансийск', 'Чукотский АО': 'Анадырь',
             'Ямало-Ненецкий АО': 'Салехард'
+        };
+
+        const regionZones = {
+            west: [
+                'Москва', 'Санкт-Петербург', 'Московская область', 'Ленинградская область', 
+                'Калининградская область', 'Псковская область', 'Новгородская область', 
+                'Смоленская область', 'Брянская область', 'Калужская область', 
+                'Тульская область', 'Рязанская область', 'Владимирская область', 
+                'Ивановская область', 'Ярославская область', 'Костромская область', 
+                'Тверская область', 'Нижегородская область', 'Кировская область', 
+                'Марий Эл', 'Чувашия', 'Мордовия', 'Пензенская область', 
+                'Самарская область'
+            ],
+            
+            east: [
+                'Саха (Якутия)', 'Приморский край', 'Хабаровский край', 'Камчатский край',
+                'Сахалинская область', 'Магаданская область', 'Чукотский АО',
+                'Амурская область', 'Еврейская автономная область', 'Забайкальский край', 'Бурятия',
+                'Иркутская область', 'Красноярский край', 'Тыва', 'Хакасия',
+                'Кемеровская область', 'Новосибирская область', 'Томская область',
+                'Омская область', 'Алтайский край', 'Алтай', 'Курганская область'
+            ],
+            
+            north: [
+                'Мурманская область', 'Карелия', 'Архангельская область', 'Ненецкий АО',
+                'Коми', 'Вологодская область', 'Ямало-Ненецкий АО', 'Ханты-Мансийский АО',
+                'Тюменская область', 'Пермский край', 'Удмуртия', 'Свердловская область', 
+                'Челябинская область', 'Оренбургская область', 'Башкортостан', 'Татарстан',
+                'Ульяновская область', 'Саратовская область', 'Волгоградская область',
+                'Астраханская область', 'Калмыкия'
+            ],
+            
+            south: [
+                'Краснодарский край', 'Ставропольский край', 'Ростовская область',
+                'Адыгея', 'Карачаево-Черкесия', 'Кабардино-Балкария', 'Северная Осетия',
+                'Ингушетия', 'Чечня', 'Дагестан', 'Севастополь',
+                'Воронежская область', 'Белгородская область', 'Курская область',
+                'Орловская область', 'Липецкая область', 'Тамбовская область'
+            ]
         };
 
         const colorPalette = [
@@ -781,6 +864,7 @@
             '#E0E0E0', '#BDBDBD', '#9E9E9E', '#757575', '#616161'
         ];
 
+        let currentLevel = 0;
         let currentRegion = null;
         let attempts = 0;
         let guessedRegions = [];
@@ -790,14 +874,16 @@
         let gameStarted = false;
         let remainingRegions = [];
         let allRegions = [];
+        let levelRegions = [];
         let svg, g, projection, path, zoom;
-        let currentStudyRegion = null;
         let regionColors = {};
         let geoData = null;
 
+        const levelSelector = document.getElementById('levelSelector');
+        const gameContainer = document.getElementById('gameContainer');
         const startBtn = document.getElementById('startBtn');
         const studyModeBtn = document.getElementById('studyMode');
-        const resetBtn = document.getElementById('resetBtn');
+        const backToLevelsBtn = document.getElementById('backToLevels');
         const resetZoomBtn = document.getElementById('resetZoom');
         const zoomInBtn = document.getElementById('zoomIn');
         const zoomOutBtn = document.getElementById('zoomOut');
@@ -807,7 +893,6 @@
         const regionInfoEl = document.getElementById('regionInfo');
         const studyRegionNameEl = document.getElementById('studyRegionName');
         const studyRegionCapitalEl = document.getElementById('studyRegionCapital');
-        const mapEl = document.getElementById('map');
         const mapContainer = document.getElementById('mapContainer');
         const feedbackNotification = document.getElementById('feedbackNotification');
         const feedbackIcon = document.getElementById('feedbackIcon');
@@ -817,10 +902,98 @@
 
         startBtn.addEventListener('click', startGame);
         studyModeBtn.addEventListener('click', toggleStudyMode);
-        resetBtn.addEventListener('click', resetGame);
-        resetZoomBtn.addEventListener('click', resetZoom);
+        backToLevelsBtn.addEventListener('click', backToLevels);
+        resetZoomBtn.addEventListener('click', () => centerOnLevel());
         zoomInBtn.addEventListener('click', zoomIn);
         zoomOutBtn.addEventListener('click', zoomOut);
+
+        function selectLevel(level) {
+            currentLevel = level;
+            levelSelector.style.display = 'none';
+            gameContainer.classList.add('active');
+            
+            if (geoData) {
+                setupLevel();
+            } else {
+                loadMap();
+            }
+        }
+
+        function setupLevel() {
+            if (currentLevel === 5) {
+                levelRegions = [...allRegions];
+            } else {
+                const zoneMap = ['west', 'east', 'north', 'south'];
+                const zone = zoneMap[currentLevel - 1];
+                levelRegions = regionZones[zone].filter(r => allRegions.includes(r));
+            }
+            
+            remainingRegions = [...levelRegions];
+            
+            // Вместо скрытия делаем регионы неактивными (серыми)
+            g.selectAll('.region-path').each(function() {
+                const regionName = d3.select(this).attr('data-region');
+                if (levelRegions.includes(regionName)) {
+                    d3.select(this).classed('inactive', false);
+                } else {
+                    d3.select(this).classed('inactive', true);
+                }
+            });
+            
+            centerOnLevel();
+            updateStats();
+            regionNameEl.textContent = 'Нажмите "Начать" для игры';
+            attemptsEl.textContent = '';
+        }
+
+        function centerOnLevel() {
+            if (!geoData || levelRegions.length === 0) return;
+
+            if (currentLevel === 5) {
+                svg.transition()
+                    .duration(1000)
+                    .call(zoom.transform, d3.zoomIdentity);
+                return;
+            }
+
+            const levelFeatures = geoData.features.filter(f => 
+                levelRegions.includes(f.properties.name)
+            );
+
+            if (levelFeatures.length === 0) return;
+
+            let minX = Infinity, minY = Infinity;
+            let maxX = -Infinity, maxY = -Infinity;
+
+            levelFeatures.forEach(feature => {
+                const bounds = path.bounds(feature);
+                minX = Math.min(minX, bounds[0][0]);
+                minY = Math.min(minY, bounds[0][1]);
+                maxX = Math.max(maxX, bounds[1][0]);
+                maxY = Math.max(maxY, bounds[1][1]);
+            });
+
+            const dx = maxX - minX;
+            const dy = maxY - minY;
+            const x = (minX + maxX) / 2;
+            const y = (minY + maxY) / 2;
+            
+            const scale = Math.min(8, 0.85 / Math.max(dx / 1200, dy / 700));
+            const translate = [1200 / 2 - scale * x, 700 / 2 - scale * y];
+
+            svg.transition()
+                .duration(1000)
+                .call(
+                    zoom.transform,
+                    d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
+                );
+        }
+
+        function backToLevels() {
+            gameContainer.classList.remove('active');
+            levelSelector.style.display = 'block';
+            resetGame();
+        }
 
         async function loadMap() {
             try {
@@ -835,8 +1008,6 @@
                 allRegions = geoData.features
                     .map(f => f.properties.name)
                     .filter(name => name);
-                
-                remainingRegions = [...allRegions];
 
                 allRegions.forEach((region, index) => {
                     regionColors[region] = colorPalette[index % colorPalette.length];
@@ -864,6 +1035,9 @@
                 zoom = d3.zoom()
                     .scaleExtent([1, 8])
                     .translateExtent([[0, 0], [width, height]])
+                    .filter(function(event) {
+                        return event.type !== 'wheel';
+                    })
                     .on("zoom", function(event) {
                         g.attr("transform", event.transform);
                     });
@@ -883,16 +1057,13 @@
                         handleRegionClick(this, d.properties.name);
                     });
 
-                updateStats();
-                console.log('Карта загружена! Регионов:', allRegions.length);
+                setupLevel();
+                console.log('Карта загружена! Всего регионов:', allRegions.length);
                 
             } catch (error) {
                 console.error('Ошибка загрузки карты:', error);
                 document.getElementById('map').innerHTML = 
-                    '<div style="color: red; padding: 20px;">' +
-                    '<strong>Ошибка загрузки</strong><br><br>' +
-                    'Детали: ' + error.message +
-                    '</div>';
+                    '<div style="color: red; padding: 20px;">Ошибка загрузки: ' + error.message + '</div>';
             }
         }
 
@@ -916,9 +1087,7 @@
                 );
 
             setTimeout(function() {
-                svg.transition()
-                    .duration(750)
-                    .call(zoom.transform, d3.zoomIdentity);
+                centerOnLevel();
             }, 1500);
         }
 
@@ -960,7 +1129,7 @@
         }
 
         function showFinalSummary() {
-            const total = allRegions.length;
+            const total = levelRegions.length;
             const percentage = Math.round((correctlyGuessed / total) * 100);
             
             let percentageClass = 'needwork';
@@ -976,11 +1145,11 @@
 
             finalSummaryEl.innerHTML = `
                 <div class="final-summary">
-                    <h2>🎊 Игра завершена!</h2>
+                    <h2>🎊 Уровень завершен!</h2>
                     <div class="summary-stats">
                         <div class="stat-item correct-stat">
                             <div class="stat-number">${correctlyGuessed}</div>
-                            <div class="stat-label">Угадано правильно</div>
+                            <div class="stat-label">Угадано</div>
                         </div>
                         <div class="stat-item missed-stat">
                             <div class="stat-number">${missedRegions}</div>
@@ -988,13 +1157,13 @@
                         </div>
                         <div class="stat-item total-stat">
                             <div class="stat-number">${total}</div>
-                            <div class="stat-label">Всего регионов</div>
+                            <div class="stat-label">Всего</div>
                         </div>
                     </div>
                     <div class="percentage ${percentageClass}">
                         Точность: ${percentage}%
                     </div>
-                    <p style="margin-top: 12px; font-size: 16px; color: #666;">${message}</p>
+                    <p style="margin-top: 12px; font-size: 18px; color: #666;">${message}</p>
                 </div>
             `;
         }
@@ -1003,27 +1172,24 @@
             studyModeActive = !studyModeActive;
             
             if (studyModeActive) {
-                studyModeBtn.textContent = 'Выйти';
+                studyModeBtn.textContent = 'Выйти из изучения';
                 studyModeBtn.classList.add('active');
                 startBtn.disabled = true;
                 regionInfoEl.classList.add('visible');
-                mapEl.classList.add('study-mode');
                 
                 if (gameStarted) {
                     gameStarted = false;
                     currentRegion = null;
                     regionNameEl.textContent = 'Режим изучения';
-                    attemptsEl.textContent = 'Тап на регион';
+                    attemptsEl.textContent = 'Нажмите на регион';
                 }
             } else {
-                studyModeBtn.textContent = 'Изучение';
+                studyModeBtn.textContent = 'Режим изучения';
                 studyModeBtn.classList.remove('active');
                 startBtn.disabled = false;
                 regionInfoEl.classList.remove('visible');
-                mapEl.classList.remove('study-mode');
                 
                 g.selectAll('.region-path.studying').classed('studying', false);
-                currentStudyRegion = null;
                 regionNameEl.textContent = 'Нажмите "Начать"';
                 attemptsEl.textContent = '';
             }
@@ -1032,7 +1198,7 @@
         function nextRegion() {
             if (remainingRegions.length === 0) {
                 gameStarted = false;
-                regionNameEl.textContent = '🎉 Все пройдены!';
+                regionNameEl.textContent = '🎉 Уровень пройден!';
                 attemptsEl.textContent = '';
                 startBtn.disabled = false;
                 showFinalSummary();
@@ -1049,10 +1215,12 @@
         }
 
         function handleRegionClick(element, clickedRegion) {
+            // Проверяем что регион активен на этом уровне
+            if (!levelRegions.includes(clickedRegion)) return;
+            
             if (studyModeActive) {
                 g.selectAll('.region-path.studying').classed('studying', false);
                 d3.select(element).classed('studying', true);
-                currentStudyRegion = clickedRegion;
                 
                 studyRegionNameEl.textContent = clickedRegion;
                 const capital = regionCapitals[clickedRegion] || 'Нет данных';
@@ -1109,21 +1277,11 @@
         }
 
         function zoomIn() {
-            svg.transition()
-                .duration(300)
-                .call(zoom.scaleBy, 1.3);
+            svg.transition().duration(300).call(zoom.scaleBy, 1.3);
         }
 
         function zoomOut() {
-            svg.transition()
-                .duration(300)
-                .call(zoom.scaleBy, 0.7);
-        }
-
-        function resetZoom() {
-            svg.transition()
-                .duration(750)
-                .call(zoom.transform, d3.zoomIdentity);
+            svg.transition().duration(300).call(zoom.scaleBy, 0.7);
         }
 
         function startGame() {
@@ -1137,7 +1295,7 @@
             guessedRegions = [];
             correctlyGuessed = 0;
             missedRegions = 0;
-            remainingRegions = [...allRegions];
+            remainingRegions = [...levelRegions];
             finalSummaryEl.innerHTML = '';
             
             g.selectAll('.region-path')
@@ -1157,23 +1315,26 @@
             guessedRegions = [];
             correctlyGuessed = 0;
             missedRegions = 0;
-            remainingRegions = [...allRegions];
             gameStarted = false;
             startBtn.disabled = false;
             finalSummaryEl.innerHTML = '';
             
-            g.selectAll('.region-path')
-                .classed('guessed', false)
-                .classed('missed', false)
-                .classed('studying', false)
-                .style('fill', function() {
-                    const region = d3.select(this).attr('data-region');
-                    return regionColors[region] || '#e8e8ed';
-                });
+            if (geoData) {
+                remainingRegions = [...levelRegions];
+                
+                g.selectAll('.region-path')
+                    .classed('guessed', false)
+                    .classed('missed', false)
+                    .classed('studying', false)
+                    .style('fill', function() {
+                        const region = d3.select(this).attr('data-region');
+                        return regionColors[region] || '#e8e8ed';
+                    });
+            }
 
             if (studyModeActive) {
                 regionNameEl.textContent = 'Режим изучения';
-                attemptsEl.textContent = 'Тап на регион';
+                attemptsEl.textContent = 'Нажмите на регион';
                 studyRegionNameEl.textContent = '—';
                 studyRegionCapitalEl.textContent = '—';
             } else {
@@ -1182,18 +1343,15 @@
             }
             
             updateStats();
-            resetZoom();
         }
 
         function updateStats() {
-            const total = allRegions.length;
+            const total = levelRegions.length;
             const completed = guessedRegions.length;
             const remaining = remainingRegions.length;
             
             statsEl.textContent = 'Пройдено: ' + completed + ' из ' + total + ' | Осталось: ' + remaining;
         }
-
-        loadMap();
     </script>
 </body>
 </html>
